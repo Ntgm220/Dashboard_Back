@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "Dashboard.API.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "..\\Dashboard.Data\\Dashboard.Data.csproj",
+        "Action": "StartWithoutDebugging"
+      }
+    ]
+  }
+]

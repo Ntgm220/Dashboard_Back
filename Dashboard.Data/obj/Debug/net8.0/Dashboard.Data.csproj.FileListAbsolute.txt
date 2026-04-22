@@ -1,0 +1,17 @@
+C:\Users\Noctu\OneDrive\Escritorio\Codes\VS\C#\Dahsboaard_Project\Dashboard.Data\obj\Debug\net8.0\Dashboard.Data.csproj.AssemblyReference.cache
+C:\Users\Noctu\OneDrive\Escritorio\Codes\VS\C#\Dahsboaard_Project\Dashboard.Data\obj\Debug\net8.0\Dashboard.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Noctu\OneDrive\Escritorio\Codes\VS\C#\Dahsboaard_Project\Dashboard.Data\obj\Debug\net8.0\Dashboard.Data.AssemblyInfoInputs.cache
+C:\Users\Noctu\OneDrive\Escritorio\Codes\VS\C#\Dahsboaard_Project\Dashboard.Data\obj\Debug\net8.0\Dashboard.Data.AssemblyInfo.cs
+C:\Users\Noctu\OneDrive\Escritorio\Codes\VS\C#\Dahsboaard_Project\Dashboard.Data\obj\Debug\net8.0\Dashboard.Data.csproj.CoreCompileInputs.cache
+C:\Users\Noctu\OneDrive\Escritorio\Codes\VS\C#\Dahsboard_Project\Dashboard.Data\obj\Debug\net8.0\Dashboard.Data.csproj.AssemblyReference.cache
+C:\Users\Noctu\OneDrive\Escritorio\Codes\VS\C#\Dahsboard_Project\Dashboard.Data\obj\Debug\net8.0\Dashboard.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Noctu\OneDrive\Escritorio\Codes\VS\C#\Dahsboard_Project\Dashboard.Data\obj\Debug\net8.0\Dashboard.Data.AssemblyInfoInputs.cache
+C:\Users\Noctu\OneDrive\Escritorio\Codes\VS\C#\Dahsboard_Project\Dashboard.Data\obj\Debug\net8.0\Dashboard.Data.AssemblyInfo.cs
+C:\Users\Noctu\OneDrive\Escritorio\Codes\VS\C#\Dahsboard_Project\Dashboard.Data\obj\Debug\net8.0\Dashboard.Data.csproj.CoreCompileInputs.cache
+C:\Users\Noctu\OneDrive\Escritorio\Codes\VS\C#\Dahsboard_Project\Dashboard.Data\bin\Debug\net8.0\Dashboard.Data.deps.json
+C:\Users\Noctu\OneDrive\Escritorio\Codes\VS\C#\Dahsboard_Project\Dashboard.Data\bin\Debug\net8.0\Dashboard.Data.dll
+C:\Users\Noctu\OneDrive\Escritorio\Codes\VS\C#\Dahsboard_Project\Dashboard.Data\bin\Debug\net8.0\Dashboard.Data.pdb
+C:\Users\Noctu\OneDrive\Escritorio\Codes\VS\C#\Dahsboard_Project\Dashboard.Data\obj\Debug\net8.0\Dashboard.Data.dll
+C:\Users\Noctu\OneDrive\Escritorio\Codes\VS\C#\Dahsboard_Project\Dashboard.Data\obj\Debug\net8.0\refint\Dashboard.Data.dll
+C:\Users\Noctu\OneDrive\Escritorio\Codes\VS\C#\Dahsboard_Project\Dashboard.Data\obj\Debug\net8.0\Dashboard.Data.pdb
+C:\Users\Noctu\OneDrive\Escritorio\Codes\VS\C#\Dahsboard_Project\Dashboard.Data\obj\Debug\net8.0\ref\Dashboard.Data.dll

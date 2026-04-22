@@ -1,0 +1,18 @@
+C:\Users\Noctu\OneDrive\Escritorio\Codes\VS\C#\Dahsboard_Project\Dashboard.Infrastructure\obj\Debug\net10.0\Dashboard.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\Noctu\OneDrive\Escritorio\Codes\VS\C#\Dahsboard_Project\Dashboard.Infrastructure\obj\Debug\net10.0\Dashboard.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Noctu\OneDrive\Escritorio\Codes\VS\C#\Dahsboard_Project\Dashboard.Infrastructure\obj\Debug\net10.0\Dashboard.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\Noctu\OneDrive\Escritorio\Codes\VS\C#\Dahsboard_Project\Dashboard.Infrastructure\obj\Debug\net10.0\Dashboard.Infrastructure.AssemblyInfo.cs
+C:\Users\Noctu\OneDrive\Escritorio\Codes\VS\C#\Dahsboard_Project\Dashboard.Infrastructure\obj\Debug\net10.0\Dashboard.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\Noctu\OneDrive\Escritorio\Codes\VS\C#\Dahsboard_Project\Dashboard.Infrastructure\bin\Debug\net10.0\Dashboard.Infrastructure.deps.json
+C:\Users\Noctu\OneDrive\Escritorio\Codes\VS\C#\Dahsboard_Project\Dashboard.Infrastructure\bin\Debug\net10.0\Dashboard.Infrastructure.dll
+C:\Users\Noctu\OneDrive\Escritorio\Codes\VS\C#\Dahsboard_Project\Dashboard.Infrastructure\bin\Debug\net10.0\Dashboard.Infrastructure.pdb
+C:\Users\Noctu\OneDrive\Escritorio\Codes\VS\C#\Dahsboard_Project\Dashboard.Infrastructure\bin\Debug\net10.0\Dashboard.Data.dll
+C:\Users\Noctu\OneDrive\Escritorio\Codes\VS\C#\Dahsboard_Project\Dashboard.Infrastructure\bin\Debug\net10.0\Dashboard.Data.pdb
+C:\Users\Noctu\OneDrive\Escritorio\Codes\VS\C#\Dahsboard_Project\Dashboard.Infrastructure\obj\Debug\net10.0\Dashboar.8846AFFD.Up2Date
+C:\Users\Noctu\OneDrive\Escritorio\Codes\VS\C#\Dahsboard_Project\Dashboard.Infrastructure\obj\Debug\net10.0\Dashboard.Infrastructure.dll
+C:\Users\Noctu\OneDrive\Escritorio\Codes\VS\C#\Dahsboard_Project\Dashboard.Infrastructure\obj\Debug\net10.0\refint\Dashboard.Infrastructure.dll
+C:\Users\Noctu\OneDrive\Escritorio\Codes\VS\C#\Dahsboard_Project\Dashboard.Infrastructure\obj\Debug\net10.0\Dashboard.Infrastructure.pdb
+C:\Users\Noctu\OneDrive\Escritorio\Codes\VS\C#\Dahsboard_Project\Dashboard.Infrastructure\obj\Debug\net10.0\ref\Dashboard.Infrastructure.dll
+C:\Users\Noctu\OneDrive\Documents\New project\backend-build-check\Dashboard.Infrastructure.deps.json
+C:\Users\Noctu\OneDrive\Documents\New project\backend-build-check\Dashboard.Infrastructure.dll
+C:\Users\Noctu\OneDrive\Documents\New project\backend-build-check\Dashboard.Infrastructure.pdb
