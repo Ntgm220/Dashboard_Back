@@ -1,0 +1,456 @@
+USE [master]
+GO
+/****** Object:  Database [DashboardDB]    Script Date: 4/22/2026 3:03:56 PM ******/
+CREATE DATABASE [DashboardDB]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'DashboardDB', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.NOTGONNALIESQL\MSSQL\DATA\DashboardDB.mdf' , SIZE = 73728KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'DashboardDB_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.NOTGONNALIESQL\MSSQL\DATA\DashboardDB_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT, LEDGER = OFF
+GO
+ALTER DATABASE [DashboardDB] SET COMPATIBILITY_LEVEL = 170
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [DashboardDB].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [DashboardDB] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [DashboardDB] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [DashboardDB] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [DashboardDB] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [DashboardDB] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [DashboardDB] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [DashboardDB] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [DashboardDB] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [DashboardDB] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [DashboardDB] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [DashboardDB] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [DashboardDB] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [DashboardDB] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [DashboardDB] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [DashboardDB] SET  ENABLE_BROKER 
+GO
+ALTER DATABASE [DashboardDB] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [DashboardDB] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [DashboardDB] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [DashboardDB] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [DashboardDB] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [DashboardDB] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [DashboardDB] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [DashboardDB] SET RECOVERY FULL 
+GO
+ALTER DATABASE [DashboardDB] SET  MULTI_USER 
+GO
+ALTER DATABASE [DashboardDB] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [DashboardDB] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [DashboardDB] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [DashboardDB] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [DashboardDB] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [DashboardDB] SET OPTIMIZED_LOCKING = OFF 
+GO
+ALTER DATABASE [DashboardDB] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
+EXEC sys.sp_db_vardecimal_storage_format N'DashboardDB', N'ON'
+GO
+ALTER DATABASE [DashboardDB] SET QUERY_STORE = ON
+GO
+ALTER DATABASE [DashboardDB] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEANUP_POLICY = (STALE_QUERY_THRESHOLD_DAYS = 30), DATA_FLUSH_INTERVAL_SECONDS = 900, INTERVAL_LENGTH_MINUTES = 60, MAX_STORAGE_SIZE_MB = 1000, QUERY_CAPTURE_MODE = AUTO, SIZE_BASED_CLEANUP_MODE = AUTO, MAX_PLANS_PER_QUERY = 200, WAIT_STATS_CAPTURE_MODE = ON)
+GO
+USE [DashboardDB]
+GO
+/****** Object:  Table [dbo].[cajas]    Script Date: 4/22/2026 3:03:57 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[cajas](
+	[id] [int] NOT NULL,
+	[sucursal_id] [int] NOT NULL,
+	[nombre] [nvarchar](150) NOT NULL,
+	[estado] [nvarchar](20) NOT NULL,
+	[fecha_creacion] [date] NOT NULL,
+	[fecha_actualizacion] [date] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+ CONSTRAINT [UQ_cajas_id_sucursal] UNIQUE NONCLUSTERED 
+(
+	[id] ASC,
+	[sucursal_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[clientes]    Script Date: 4/22/2026 3:03:57 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[clientes](
+	[id] [int] NOT NULL,
+	[nombre] [nvarchar](150) NOT NULL,
+	[estado] [nvarchar](20) NOT NULL,
+	[fecha_creacion] [date] NOT NULL,
+	[fecha_actualizacion] [date] NOT NULL,
+	[sucursal_id] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[empresas]    Script Date: 4/22/2026 3:03:57 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[empresas](
+	[id] [int] NOT NULL,
+	[nombre] [nvarchar](150) NOT NULL,
+	[codigo_empresa] [nvarchar](50) NOT NULL,
+	[f_sinc] [date] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+UNIQUE NONCLUSTERED 
+(
+	[codigo_empresa] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[empresas_logs]    Script Date: 4/22/2026 3:03:57 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[empresas_logs](
+	[id] [int] NOT NULL,
+	[empresa_id] [int] NOT NULL,
+	[fecha] [date] NOT NULL,
+	[tipo] [nvarchar](50) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[sucursales]    Script Date: 4/22/2026 3:03:57 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[sucursales](
+	[id] [int] NOT NULL,
+	[empresa_id] [int] NOT NULL,
+	[nombre] [nvarchar](150) NOT NULL,
+	[estado] [nvarchar](20) NOT NULL,
+	[fecha_creacion] [date] NOT NULL,
+	[fecha_actualizacion] [date] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+ CONSTRAINT [UQ_sucursales_id_empresa] UNIQUE NONCLUSTERED 
+(
+	[id] ASC,
+	[empresa_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Usuarios]    Script Date: 4/22/2026 3:03:57 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Usuarios](
+	[id] [int] NOT NULL,
+	[empresa_id] [int] NOT NULL,
+	[correo] [nvarchar](150) NOT NULL,
+	[nombre] [nvarchar](150) NOT NULL,
+	[clave] [nvarchar](255) NOT NULL,
+	[rol] [nvarchar](50) NOT NULL,
+	[estado] [nvarchar](20) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+UNIQUE NONCLUSTERED 
+(
+	[correo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[vendedores]    Script Date: 4/22/2026 3:03:57 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[vendedores](
+	[id] [int] NOT NULL,
+	[sucursal_id] [int] NOT NULL,
+	[nombre] [nvarchar](150) NOT NULL,
+	[estado] [nvarchar](20) NOT NULL,
+	[fecha_creacion] [date] NOT NULL,
+	[fecha_actualizacion] [date] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+ CONSTRAINT [UQ_vendedores_id_sucursal] UNIQUE NONCLUSTERED 
+(
+	[id] ASC,
+	[sucursal_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[VentaBase]    Script Date: 4/22/2026 3:03:57 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[VentaBase](
+	[id] [int] NOT NULL,
+	[empresa_id] [int] NOT NULL,
+	[sucursal_id] [int] NOT NULL,
+	[caja_id] [int] NOT NULL,
+	[vendedor_id] [int] NOT NULL,
+	[cliente_id] [int] NOT NULL,
+	[subtotal] [decimal](18, 2) NOT NULL,
+	[descuento] [decimal](18, 2) NOT NULL,
+	[impuesto] [decimal](18, 2) NOT NULL,
+	[cantidad_facturas] [int] NOT NULL,
+	[cantidad_devoluciones] [int] NOT NULL,
+	[factura] [decimal](18, 2) NOT NULL,
+	[devolucion] [decimal](18, 2) NOT NULL,
+	[total] [decimal](18, 2) NOT NULL,
+	[efectivo] [decimal](18, 2) NOT NULL,
+	[tarjeta] [decimal](18, 2) NOT NULL,
+	[cheque] [decimal](18, 2) NOT NULL,
+	[bonos] [decimal](18, 2) NOT NULL,
+	[nota_credito] [decimal](18, 2) NOT NULL,
+	[credito] [decimal](18, 2) NOT NULL,
+	[contado] [decimal](18, 2) NOT NULL,
+	[fecha] [date] NOT NULL,
+ CONSTRAINT [PK_VentaBase] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_cajas_sucursal]    Script Date: 4/22/2026 3:03:57 PM ******/
+CREATE NONCLUSTERED INDEX [IX_cajas_sucursal] ON [dbo].[cajas]
+(
+	[sucursal_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_clientes_sucursal]    Script Date: 4/22/2026 3:03:57 PM ******/
+CREATE NONCLUSTERED INDEX [IX_clientes_sucursal] ON [dbo].[clientes]
+(
+	[sucursal_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_empresas_logs_empresa_fecha]    Script Date: 4/22/2026 3:03:57 PM ******/
+CREATE NONCLUSTERED INDEX [IX_empresas_logs_empresa_fecha] ON [dbo].[empresas_logs]
+(
+	[empresa_id] ASC,
+	[fecha] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_sucursales_empresa]    Script Date: 4/22/2026 3:03:57 PM ******/
+CREATE NONCLUSTERED INDEX [IX_sucursales_empresa] ON [dbo].[sucursales]
+(
+	[empresa_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_Usuarios_empresa]    Script Date: 4/22/2026 3:03:57 PM ******/
+CREATE NONCLUSTERED INDEX [IX_Usuarios_empresa] ON [dbo].[Usuarios]
+(
+	[empresa_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_vendedores_sucursal]    Script Date: 4/22/2026 3:03:57 PM ******/
+CREATE NONCLUSTERED INDEX [IX_vendedores_sucursal] ON [dbo].[vendedores]
+(
+	[sucursal_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_VentaBase_caja_fecha]    Script Date: 4/22/2026 3:03:57 PM ******/
+CREATE NONCLUSTERED INDEX [IX_VentaBase_caja_fecha] ON [dbo].[VentaBase]
+(
+	[caja_id] ASC,
+	[fecha] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_VentaBase_cliente_fecha]    Script Date: 4/22/2026 3:03:57 PM ******/
+CREATE NONCLUSTERED INDEX [IX_VentaBase_cliente_fecha] ON [dbo].[VentaBase]
+(
+	[cliente_id] ASC,
+	[fecha] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_VentaBase_fecha]    Script Date: 4/22/2026 3:03:57 PM ******/
+CREATE NONCLUSTERED INDEX [IX_VentaBase_fecha] ON [dbo].[VentaBase]
+(
+	[fecha] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_VentaBase_sucursal_fecha]    Script Date: 4/22/2026 3:03:57 PM ******/
+CREATE NONCLUSTERED INDEX [IX_VentaBase_sucursal_fecha] ON [dbo].[VentaBase]
+(
+	[sucursal_id] ASC,
+	[fecha] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_VentaBase_vendedor_fecha]    Script Date: 4/22/2026 3:03:57 PM ******/
+CREATE NONCLUSTERED INDEX [IX_VentaBase_vendedor_fecha] ON [dbo].[VentaBase]
+(
+	[vendedor_id] ASC,
+	[fecha] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[cajas] ADD  CONSTRAINT [DF_cajas_estado]  DEFAULT ('activo') FOR [estado]
+GO
+ALTER TABLE [dbo].[cajas] ADD  CONSTRAINT [DF_cajas_fecha_creacion]  DEFAULT (CONVERT([date],getdate())) FOR [fecha_creacion]
+GO
+ALTER TABLE [dbo].[clientes] ADD  CONSTRAINT [DF_clientes_estado]  DEFAULT ('activo') FOR [estado]
+GO
+ALTER TABLE [dbo].[clientes] ADD  CONSTRAINT [DF_clientes_fecha_creacion]  DEFAULT (CONVERT([date],getdate())) FOR [fecha_creacion]
+GO
+ALTER TABLE [dbo].[sucursales] ADD  CONSTRAINT [DF_sucursales_estado]  DEFAULT ('activo') FOR [estado]
+GO
+ALTER TABLE [dbo].[sucursales] ADD  CONSTRAINT [DF_sucursales_fecha_creacion]  DEFAULT (CONVERT([date],getdate())) FOR [fecha_creacion]
+GO
+ALTER TABLE [dbo].[Usuarios] ADD  CONSTRAINT [DF_Usuarios_estado]  DEFAULT ('activo') FOR [estado]
+GO
+ALTER TABLE [dbo].[vendedores] ADD  CONSTRAINT [DF_vendedores_estado]  DEFAULT ('activo') FOR [estado]
+GO
+ALTER TABLE [dbo].[vendedores] ADD  CONSTRAINT [DF_vendedores_fecha_creacion]  DEFAULT (CONVERT([date],getdate())) FOR [fecha_creacion]
+GO
+ALTER TABLE [dbo].[cajas]  WITH CHECK ADD  CONSTRAINT [FK_cajas_sucursales] FOREIGN KEY([sucursal_id])
+REFERENCES [dbo].[sucursales] ([id])
+GO
+ALTER TABLE [dbo].[cajas] CHECK CONSTRAINT [FK_cajas_sucursales]
+GO
+ALTER TABLE [dbo].[clientes]  WITH CHECK ADD  CONSTRAINT [FK_clientes_sucursales] FOREIGN KEY([sucursal_id])
+REFERENCES [dbo].[sucursales] ([id])
+GO
+ALTER TABLE [dbo].[clientes] CHECK CONSTRAINT [FK_clientes_sucursales]
+GO
+ALTER TABLE [dbo].[empresas_logs]  WITH CHECK ADD  CONSTRAINT [FK_empresas_logs_empresas] FOREIGN KEY([empresa_id])
+REFERENCES [dbo].[empresas] ([id])
+GO
+ALTER TABLE [dbo].[empresas_logs] CHECK CONSTRAINT [FK_empresas_logs_empresas]
+GO
+ALTER TABLE [dbo].[sucursales]  WITH CHECK ADD  CONSTRAINT [FK_sucursales_empresas] FOREIGN KEY([empresa_id])
+REFERENCES [dbo].[empresas] ([id])
+GO
+ALTER TABLE [dbo].[sucursales] CHECK CONSTRAINT [FK_sucursales_empresas]
+GO
+ALTER TABLE [dbo].[Usuarios]  WITH CHECK ADD  CONSTRAINT [FK_Usuarios_empresas] FOREIGN KEY([empresa_id])
+REFERENCES [dbo].[empresas] ([id])
+GO
+ALTER TABLE [dbo].[Usuarios] CHECK CONSTRAINT [FK_Usuarios_empresas]
+GO
+ALTER TABLE [dbo].[vendedores]  WITH CHECK ADD  CONSTRAINT [FK_vendedores_sucursales] FOREIGN KEY([sucursal_id])
+REFERENCES [dbo].[sucursales] ([id])
+GO
+ALTER TABLE [dbo].[vendedores] CHECK CONSTRAINT [FK_vendedores_sucursales]
+GO
+ALTER TABLE [dbo].[VentaBase]  WITH CHECK ADD  CONSTRAINT [FK_VentaBase_cajas] FOREIGN KEY([caja_id])
+REFERENCES [dbo].[cajas] ([id])
+GO
+ALTER TABLE [dbo].[VentaBase] CHECK CONSTRAINT [FK_VentaBase_cajas]
+GO
+ALTER TABLE [dbo].[VentaBase]  WITH CHECK ADD  CONSTRAINT [FK_VentaBase_clientes] FOREIGN KEY([cliente_id])
+REFERENCES [dbo].[clientes] ([id])
+GO
+ALTER TABLE [dbo].[VentaBase] CHECK CONSTRAINT [FK_VentaBase_clientes]
+GO
+ALTER TABLE [dbo].[VentaBase]  WITH CHECK ADD  CONSTRAINT [FK_VentaBase_empresas] FOREIGN KEY([empresa_id])
+REFERENCES [dbo].[empresas] ([id])
+GO
+ALTER TABLE [dbo].[VentaBase] CHECK CONSTRAINT [FK_VentaBase_empresas]
+GO
+ALTER TABLE [dbo].[VentaBase]  WITH CHECK ADD  CONSTRAINT [FK_VentaBase_sucursales] FOREIGN KEY([sucursal_id])
+REFERENCES [dbo].[sucursales] ([id])
+GO
+ALTER TABLE [dbo].[VentaBase] CHECK CONSTRAINT [FK_VentaBase_sucursales]
+GO
+ALTER TABLE [dbo].[VentaBase]  WITH CHECK ADD  CONSTRAINT [FK_VentaBase_vendedores] FOREIGN KEY([vendedor_id])
+REFERENCES [dbo].[vendedores] ([id])
+GO
+ALTER TABLE [dbo].[VentaBase] CHECK CONSTRAINT [FK_VentaBase_vendedores]
+GO
+ALTER TABLE [dbo].[cajas]  WITH CHECK ADD  CONSTRAINT [CK_cajas_estado] CHECK  (([estado]='inactivo' OR [estado]='activo'))
+GO
+ALTER TABLE [dbo].[cajas] CHECK CONSTRAINT [CK_cajas_estado]
+GO
+ALTER TABLE [dbo].[clientes]  WITH CHECK ADD  CONSTRAINT [CK_clientes_estado] CHECK  (([estado]='inactivo' OR [estado]='activo'))
+GO
+ALTER TABLE [dbo].[clientes] CHECK CONSTRAINT [CK_clientes_estado]
+GO
+ALTER TABLE [dbo].[sucursales]  WITH CHECK ADD  CONSTRAINT [CK_sucursales_estado] CHECK  (([estado]='inactivo' OR [estado]='activo'))
+GO
+ALTER TABLE [dbo].[sucursales] CHECK CONSTRAINT [CK_sucursales_estado]
+GO
+ALTER TABLE [dbo].[Usuarios]  WITH CHECK ADD  CONSTRAINT [CK_Usuarios_estado] CHECK  (([estado]='inactivo' OR [estado]='activo'))
+GO
+ALTER TABLE [dbo].[Usuarios] CHECK CONSTRAINT [CK_Usuarios_estado]
+GO
+ALTER TABLE [dbo].[vendedores]  WITH CHECK ADD  CONSTRAINT [CK_vendedores_estado] CHECK  (([estado]='inactivo' OR [estado]='activo'))
+GO
+ALTER TABLE [dbo].[vendedores] CHECK CONSTRAINT [CK_vendedores_estado]
+GO
+ALTER TABLE [dbo].[VentaBase]  WITH CHECK ADD  CONSTRAINT [CK_VentaBase_cantidad_devoluciones] CHECK  (([cantidad_devoluciones]>=(0)))
+GO
+ALTER TABLE [dbo].[VentaBase] CHECK CONSTRAINT [CK_VentaBase_cantidad_devoluciones]
+GO
+ALTER TABLE [dbo].[VentaBase]  WITH CHECK ADD  CONSTRAINT [CK_VentaBase_cantidad_facturas] CHECK  (([cantidad_facturas]>=(0)))
+GO
+ALTER TABLE [dbo].[VentaBase] CHECK CONSTRAINT [CK_VentaBase_cantidad_facturas]
+GO
+ALTER TABLE [dbo].[VentaBase]  WITH CHECK ADD  CONSTRAINT [CK_VentaBase_devolucion] CHECK  (([devolucion]>=(0)))
+GO
+ALTER TABLE [dbo].[VentaBase] CHECK CONSTRAINT [CK_VentaBase_devolucion]
+GO
+ALTER TABLE [dbo].[VentaBase]  WITH CHECK ADD  CONSTRAINT [CK_VentaBase_factura] CHECK  (([factura]>=(0)))
+GO
+ALTER TABLE [dbo].[VentaBase] CHECK CONSTRAINT [CK_VentaBase_factura]
+GO
+ALTER TABLE [dbo].[VentaBase]  WITH CHECK ADD  CONSTRAINT [CK_VentaBase_total] CHECK  (([total]>=(0)))
+GO
+ALTER TABLE [dbo].[VentaBase] CHECK CONSTRAINT [CK_VentaBase_total]
+GO
+USE [master]
+GO
+ALTER DATABASE [DashboardDB] SET  READ_WRITE 
+GO
